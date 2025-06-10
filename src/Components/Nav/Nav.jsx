@@ -10,7 +10,8 @@ import { LuShoppingBag } from 'react-icons/lu';
 
 export default function Nav() {
   const {token , setToken} = useContext(AuthContext)
-  const {numOfCartItems} = useContext(CartContext)
+  //const cartContext = useContext(CartContext); // بنستخدمه بأمان
+  const numOfCartItems =  0;
   const navigate = useNavigate()
   function logout() {
     localStorage.removeItem('token')

@@ -9,6 +9,8 @@ export default function CartContextProvider({children}) {
   const [numOfCartItems,setNumOfCartItems]= useState()
   const [cartItems,setCartItems] = useState([])
   const [cartId,setCartId] = useState()
+  const [itemQty,setItemQty] = useState()
+  const token = localStorage.getItem('token')
     async function addToCart(productId){
        try{
         const res = await axios.post('https://ecommerce.routemisr.com/api/v1/cart',{productId},
@@ -39,9 +41,11 @@ export default function CartContextProvider({children}) {
     }
   }
 
-  useEffect(()=>{
-    getCartItems()
-  },[])
+  useEffect(() => {
+    if (token) {
+      getCartItems();
+    }
+  }, [token]);
   
 
   async function updateCartItems(id,count){
